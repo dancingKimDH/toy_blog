@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "components/Header";
+import Footer from "components/Footer";
+import Carousel from "components/Carousel";
 
 export default function Home() {
     return (
         <div>
             <Header />
+            <Carousel />
             <div className="post__navigation">
                 <div className="post__navigation--active">전체 글</div>
                 <div>나의 글</div>

@@ -1,13 +1,13 @@
 
 import { Route, Routes, Navigate, Link } from "react-router-dom";
-import Home from "../pages/home";
-import PostList from "../pages/posts";
-import PostPage from "../pages/posts/detail";
-import PostNew from "../pages/posts/new";
-import PostEdit from "../pages/posts";
-import Profile from "../pages/profile";
-import LoginPage from "../pages/login";
-import SignUp from "../pages/signup";
+import Home from "pages/home";
+import PostList from "pages/posts";
+import PostPage from "pages/posts/detail";
+import PostNew from "pages/posts/new";
+import PostEdit from "pages/posts";
+import Profile from "pages/profile";
+import LoginPage from "pages/login";
+import SignUp from "pages/signup";
 
 function App() {
   return (
