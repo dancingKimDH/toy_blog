@@ -1,6 +1,6 @@
 export default function PostForm() {
     return (
-        <form action="/post" method="post" className="form">
+        <form action="/post" method="POST" className="form">
 
             <div className="form__block">
                 <label htmlFor="title">제목</label>
