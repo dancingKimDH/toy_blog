@@ -441,7 +441,6 @@ input:checked + .carousel__slide-container .nav label {
   color: black;
 }
 
-
 /* loader */
 .loader {
   width: 48px;
@@ -457,4 +456,3 @@ input:checked + .carousel__slide-container .nav label {
   z-index: 9999;
   animation: rotation 1s linear infinite;
 }
-
