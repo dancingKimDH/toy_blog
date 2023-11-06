@@ -392,6 +392,10 @@ input:checked + .carousel__slide-container .nav label {
   width: 100%;
 }
 
+.form__error {
+  color: red;
+}
+
 .form label {
   display: block;
   font-weight: 500;
