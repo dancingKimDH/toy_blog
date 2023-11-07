@@ -2,11 +2,12 @@ import { Link } from "react-router-dom"
 import { getAuth, signOut } from "firebase/auth"
 import { app } from "firebaseApp"
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import AuthContext from "context/AuthContext";
 
 export default function Profile() {
     
-    const auth = getAuth(app);
-
+    const { user } = useContext(AuthContext);
     const onSignOut = (async () => {
         try {
         const auth = getAuth(app);
@@ -24,10 +25,10 @@ export default function Profile() {
                 <div className="profile__image"></div>
                 <div>
                     <div className="profile__email">
-                        {auth?.currentUser?.email}
+                        {user?.email}
                     </div>
                     <div className="profile__name">
-                        {auth?.currentUser?.displayName || '사용자'}
+                        {user?.displayName || '사용자'}
                     </div>
                 </div>
             </div>
