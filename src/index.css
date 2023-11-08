@@ -181,6 +181,14 @@ footer a:focus, footer a:hover {
   padding: 20px 0px;
 }
 
+.post__no-post {
+  padding: 24px;
+  text-align: center;
+  color: grey;
+  border: 1px solid whitesmoke;
+  border-radius: 20px;
+}
+
 /* profile */
 
 .profile__box {
