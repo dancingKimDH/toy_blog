@@ -16,7 +16,8 @@ export interface PostProps {
     email: string;
     summary: string;
     content: string;
-    createdAt: string
+    createdAt: string;
+    uid: string;
 }
 
 export default function PostsList({ hasNavigation = true }: PostListProps) {
