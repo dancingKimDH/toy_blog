@@ -1,25 +1,58 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
+import { useParams } from "react-router-dom"
+import {PostProps} from "./PostList";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "firebaseApp";
+import Loader from "./Loader";
 
 export default function PostDetail() {
+    
+    const params = useParams();
+    const [post, setPost] = useState<PostProps | null>(null)
+    console.log(params);
+
+    const getPost = async(id: string) => {
+        if(id) {
+            const docRef = doc(db, "posts", id);
+            const docSnap = await getDoc(docRef);
+
+            setPost({id: docSnap.id, ...(docSnap.data() as PostProps)});
+            console.log(post)
+        }
+    }
+
+    // delete
+    const handleDelete = () => {
+        console.log("delete");
+    }
+
+    useEffect(() => {
+        if(params?.id) getPost(params?.id);
+    }, [params?.id]);
+    
     return (
         <div className="post__detail">
+            {post ? (
             <div className="post__box">
-                <div className="post__title">PostPage</div>
+                <div className="post__title">{post?.title}</div>
                 <div className="post_profile_box">
                     <div className="post_profile" />
-                    <div className="post_author_name"> DH</div>
-                    <div className="post_date"> 2023 </div>
+                    <div className="post_author_name"> {post?.email}</div>
+                    <div className="post_date"> {post?.createdAt} </div>
                 </div>
                 <div className="post__utils-box">
-                    <div className="post__delete">삭제</div>
+                    <div className="post__delete" role="presentation" onClick={handleDelete}>삭제</div>
                     <div className="post__edit">
                         <Link to = {`/posts/edit/1`}> 수정 </Link>
                     </div>
                 </div>
-                <div className="post__text"> Non arcu risus quis varius quam quisque.
-                    Velit sed ullamcorper morbi tincidunt ornare. Netus et malesuada fames ac turpis egestas. Consequat id porta nibh venenatis cras sed. Libero enim sed faucibus turpis in. Nunc pulvinar sapien et ligula ullamcorper. Netus et malesuada fames ac turpis egestas. Enim praesent elementum facilisis leo. Vel facilisis volutpat est velit egestas dui. Netus et malesuada fames ac turpis egestas. Eget sit amet tellus cras adipiscing enim eu turpis. Porttitor rhoncus dolor purus non enim praesent elementum facilisis leo. Aliquet bibendum enim facilisis gravida neque convallis a cras semper. Ultrices neque ornare aenean euismod elementum nisi quis eleifend quam. Odio eu feugiat pretium nibh ipsum consequat. Pretium fusce id velit ut tortor. A erat nam at lectus urna duis convallis convallis. </div>
+                <div className="post__text post__text--prewrap"> 
+                {post?.content}
+                </div>
 
             </div>
+            ) : <Loader />}
         </div>
     )
 }

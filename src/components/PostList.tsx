@@ -10,8 +10,8 @@ interface PostListProps {
 
 type TapType = "all" | "my"
 
-interface PostProps {
-    id: string;
+export interface PostProps {
+    id?: string;
     title: string;
     email: string;
     summary: string;
@@ -32,7 +32,6 @@ export default function PostsList({ hasNavigation = true }: PostListProps) {
         datas?.forEach((doc) => {
             const dataObj = { ...doc.data(), id: doc.id };
             setPosts((prev) => [...prev, dataObj as PostProps]);
-            console.log(dataObj);
         })
     }
 
@@ -63,7 +62,7 @@ export default function PostsList({ hasNavigation = true }: PostListProps) {
                                 <div className="post_date"> {post?.createdAt} </div>
                             </div>
                             <div className="post_title"> {post?.title} </div>
-                            <div className="post_text"> {post?.content} </div>
+                            <div className="post_text"> {post?.summary} </div>
                         </Link>
 
 

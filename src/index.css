@@ -189,6 +189,10 @@ footer a:focus, footer a:hover {
   border-radius: 20px;
 }
 
+.post__text--prewrap{
+  white-space: pre-wrap;
+}
+
 /* profile */
 
 .profile__box {
