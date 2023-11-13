@@ -7,8 +7,13 @@ import { toast } from "react-toastify";
 
 interface PostListProps {
     hasNavigation?: boolean;
-    defaultTab?: TapType;
+    defaultTab?: TapType | CategoryType;
 }
+
+ // 카테고리
+ export type CategoryType = "Frontend" | "Backend" | "Web" | "Native";
+ export const CATEGORIES:  CategoryType[] = ['Frontend', "Backend", "Web", "Native"];
+
 
 type TapType = "all" | "my"
 
@@ -20,11 +25,12 @@ export interface PostProps {
     content: string;
     createdAt: string;
     uid: string;
+    category?: CategoryType;
 }
 
 export default function PostsList({ hasNavigation = true, defaultTab = "all" }: PostListProps) {
 
-    const [activeTab, setActiveTab] = useState<TapType>(defaultTab);
+    const [activeTab, setActiveTab] = useState<TapType | CategoryType>(defaultTab);
 
     const [posts, setPosts] = useState<PostProps[]>([]);
 
@@ -47,8 +53,10 @@ export default function PostsList({ hasNavigation = true, defaultTab = "all" }: 
 
         if(activeTab === "my" && user) {
             postsQuery = query(postRef, where("uid", '==', user?.uid), orderBy("createdAt", "desc"));
-        } else {
+        } else if (activeTab === "all") {
             postsQuery = query(postRef, orderBy("createdAt", "desc"));
+        } else {
+            postsQuery = query(postRef, where("category", "==", activeTab), orderBy("createdAt", "desc"));
         }
         const datas = await getDocs(postsQuery);
         datas?.forEach((doc) => {
@@ -71,7 +79,10 @@ export default function PostsList({ hasNavigation = true, defaultTab = "all" }: 
                         className={activeTab === "all" ? "post__navigation--active" : ""}>전체 글</div>
                     <div role="presentation" onClick={() => setActiveTab("my")}
                         className={activeTab === "my" ? "post__navigation--active" : ""} >나의 글</div>
-
+                        {CATEGORIES?.map((category) => (
+                            <div role="presentation" onClick={() => setActiveTab(category)}
+                            className={activeTab === category ? "post__navigation--active" : ""}>{category}</div>
+                        ))}
                 </div>
             )}
 

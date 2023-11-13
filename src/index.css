@@ -193,6 +193,15 @@ footer a:focus, footer a:hover {
   white-space: pre-wrap;
 }
 
+.post__category {
+  color: grey;
+  border: 1px solid lightgrey;
+  background-color: whitesmoke;
+  padding: 0px 4px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
 /* profile */
 
 .profile__box {
@@ -453,6 +462,15 @@ input:checked + .carousel__slide-container .nav label {
 
 .form__link:hover, .form__link:focus {
   color: black;
+}
+
+.form select {
+  border: 1px solid lightgrey;
+  max-width: 680px;
+  height: 40px;
+  padding: 0px 20px;
+  border-radius: 0.3;
+  background-color: whitesmoke;
 }
 
 /* loader */
