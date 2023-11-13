@@ -80,7 +80,7 @@ export default function PostsList({ hasNavigation = true, defaultTab = "all" }: 
                     <div role="presentation" onClick={() => setActiveTab("my")}
                         className={activeTab === "my" ? "post__navigation--active" : ""} >나의 글</div>
                         {CATEGORIES?.map((category) => (
-                            <div role="presentation" onClick={() => setActiveTab(category)}
+                            <div key={category} role="presentation" onClick={() => setActiveTab(category)}
                             className={activeTab === category ? "post__navigation--active" : ""}>{category}</div>
                         ))}
                 </div>
