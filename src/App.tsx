@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { useContext } from "react";
+import ThemeContext from "context/ThemeContext";
 import Router from "./components/Router";
 import { useState } from "react";
 import { app, db } from "firebaseApp";
@@ -8,6 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loader from "components/Loader";
 
 function App() {
+
+  const context = useContext(ThemeContext);
 
   const auth = getAuth(app);
 
@@ -31,12 +35,12 @@ function App() {
   }, [auth]);
 
   return (
-    <>
+    <div className={context.theme === "light" ? "white" : "dark"}>
       <ToastContainer />
       {init ?
         <Router isAuthenticated={isAuthenticated} />
   : <Loader />}
-    </>
+    </div>
   )
 }
 
