@@ -6,6 +6,7 @@ import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "firebaseApp";
 import Loader from "./Loader";
 import { toast } from "react-toastify";
+import Comment from "./Comment";
 
 export default function PostDetail() {
 
@@ -39,32 +40,36 @@ export default function PostDetail() {
     }, [params?.id]);
 
     return (
-        <div className="post__detail">
-            {post ? (
-                <div className="post__box">
-                    <div className="post__title">{post?.title}</div>
-                    <div className="post_profile_box">
-                        <div className="post_profile" />
-                        <div className="post_author_name"> {post?.email}</div>
-                        <div className="post_date"> {post?.createdAt} </div>
-                    </div>
-                    <div className="post__utils-box">
-                        {post?.category && (
-                            <div className="post__category">
-                                {post?.category}
-                            </div>
-                        )}
-                        <div className="post__delete" role="presentation" onClick={handleDelete}>삭제</div>
-                        <div className="post__edit">
-                            <Link to={`/posts/edit/${post?.id}`}> 수정 </Link>
+        <>
+            <div className="post__detail">
+                {post ? (
+                    <div className="post__box">
+                        <div className="post__title">{post?.title}</div>
+                        <div className="post_profile_box">
+                            <div className="post_profile" />
+                            <div className="post_author_name"> {post?.email}</div>
+                            <div className="post_date"> {post?.createdAt} </div>
                         </div>
-                    </div>
-                    <div className="post__text post__text--prewrap">
-                        {post?.content}
-                    </div>
+                        <div className="post__utils-box">
+                            {post?.category && (
+                                <div className="post__category">
+                                    {post?.category}
+                                </div>
+                            )}
+                            <div className="post__delete" role="presentation" onClick={handleDelete}>삭제</div>
+                            <div className="post__edit">
+                                <Link to={`/posts/edit/${post?.id}`}> 수정 </Link>
+                            </div>
+                        </div>
+                        <div className="post__text post__text--prewrap">
+                            {post?.content}
+                        </div>
 
-                </div>
-            ) : <Loader />}
-        </div>
+                    </div>
+                ) : <Loader />}
+            <Comment/>
+            </div>
+            
+        </>
     )
 }
