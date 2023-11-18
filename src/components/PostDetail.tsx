@@ -21,7 +21,6 @@ export default function PostDetail() {
             const docSnap = await getDoc(docRef);
 
             setPost({ id: docSnap.id, ...(docSnap.data() as PostProps) });
-            console.log(post)
         }
     }
 
@@ -67,7 +66,7 @@ export default function PostDetail() {
 
                     </div>
                 ) : <Loader />}
-            {post && <Comment post={post}/> }
+            {post && <Comment post={post} getPost = {getPost}/> }
             </div>
             
         </>

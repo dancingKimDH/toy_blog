@@ -17,6 +17,13 @@ interface PostListProps {
 
 type TapType = "all" | "my"
 
+export interface CommentsInterface {
+    content: string;
+    uid: string;
+    email: string;
+    createdAt: String;
+}
+
 export interface PostProps {
     id?: string;
     title: string;
@@ -26,6 +33,7 @@ export interface PostProps {
     createdAt: string;
     uid: string;
     category?: CategoryType;
+    comments?: CommentsInterface[];
 }
 
 export default function PostsList({ hasNavigation = true, defaultTab = "all" }: PostListProps) {
